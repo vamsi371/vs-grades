@@ -47,6 +47,7 @@ namespace grades
             Console.WriteLine(stats.HighGrade);
             Console.WriteLine(stats.LowGrade);
             Console.WriteLine(stats.AvgGrade);
+            Console.WriteLine(stats.LetterGrade);
         }
 
         private static void onnamechanged4(object sender, NameChangedEventArgs aargs)

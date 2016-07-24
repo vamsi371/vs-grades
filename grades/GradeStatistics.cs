@@ -19,5 +19,25 @@ namespace grades
        public float AvgGrade;
        public float LowGrade;
        public float HighGrade;
+
+        public string LetterGrade
+        {
+            get
+            {
+                if (AvgGrade >= 90)
+                {
+                    return "A";
+                }
+                else if (AvgGrade >= 80)
+                    return "B";
+                else if (AvgGrade >= 70)
+                    return "c";
+                else if (AvgGrade >= 60)
+                    return "D";
+                else
+                    return "F";
+
+            }
+        }
     }
 }

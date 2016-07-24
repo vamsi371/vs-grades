@@ -43,6 +43,7 @@ namespace grades
 
 
             book.Name = "lisa ann's book";
+            book.Name = "Stella's book";
 
             Console.WriteLine(stats.HighGrade);
             Console.WriteLine(stats.LowGrade);

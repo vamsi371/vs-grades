@@ -21,14 +21,14 @@ namespace grades
     //basically these delegates are for events, like saying that 
     //a name is changed in this case
      
-    //basically or universally in usage an event in .net takes 2 parameters 
+    //basically or universally in usage, an event in .net takes 2 parameters 
     //a sender object (who is sending this event)
     //and an object that encapsulates the information needed by the subscriber
     //subscribing to this event
     //The syntax is shown below 
 
     public delegate void NameChangedDelegate(object sender, 
-        NameChangedEventArgs Args);
+        NameChangedEventArgs A);
         
 
     }

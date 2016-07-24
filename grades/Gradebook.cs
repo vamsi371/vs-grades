@@ -26,10 +26,10 @@ namespace grades
                         //(Innermeaning)this also means gradebook does not know which 
                         //method it is invoking(who are subscribers )
                         //but only knows it has to invoke the delegate
-                        NameChangedEventArgs args = new NameChangedEventArgs();
-                        args.Oldvalue = _name;
-                        args.Newvalue = value;
-                        namechanged(this,args);
+                        NameChangedEventArgs e = new NameChangedEventArgs();
+                        e.Oldvalue = _name;
+                        e.Newvalue = value;
+                        namechanged(this,e);
                         }
                     _name=value;
 

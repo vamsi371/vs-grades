@@ -18,7 +18,8 @@ namespace grades
             GradeStatistics stats = book.ComputeStatistics();
             WriteBytes(stats.AvgGrade);
             writenames(book.Name);
-            
+
+
             Console.WriteLine(book.Name);
 
             //we can use this to create and initialize a new delagate

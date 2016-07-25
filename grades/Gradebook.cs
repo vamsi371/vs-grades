@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+
 namespace grades
 {
     public class Gradebook
     {
-        List<float> gradees ;
+        private List<float> _gradees ;
         private string _name;
        
 
@@ -16,6 +18,10 @@ namespace grades
                 }
             set
                 {
+                if (String.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Name cannot be null or empty");
+                }
                 if (_name != value)
                     {
                     //checking if someone is subscribed to the event or not
@@ -38,6 +44,17 @@ namespace grades
                 }
                       
         }
+
+        public void WriteGrades(TextWriter textWritter)
+        {
+            textWritter.WriteLine("Grades: ");
+            foreach (float g in _gradees)
+            {
+                textWritter.WriteLine(g);
+            }
+            textWritter.WriteLine("********");
+        }
+
         //creating an event with an delegate namechanged
         //we can just intialize a delegate but it should be 
         //public (which means it can be overwritten from outside)
@@ -46,14 +63,14 @@ namespace grades
         public Gradebook(string name = "there is no name")
         {
             _name= name;
-            gradees = new List<float>();
+            _gradees = new List<float>();
 
         }
 
         
         public void AddGrade(float grade)
         {
-            gradees.Add(grade);
+            _gradees.Add(grade);
         }
 
         //here the method computestatistics is used to return
@@ -63,14 +80,14 @@ namespace grades
             GradeStatistics stats = new GradeStatistics();
             
             float sum = 0f;
-            foreach (float grade in gradees)
+            foreach (float grade in _gradees)
             {
                 stats.HighGrade = Math.Max(grade, stats.HighGrade);
                 stats.LowGrade = Math.Min(grade, stats.LowGrade);
                 sum += grade;
             }
 
-            stats.AvgGrade = sum / gradees.Count;
+            stats.AvgGrade = sum / _gradees.Count;
 
             return stats;
         }

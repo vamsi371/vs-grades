@@ -13,6 +13,13 @@ namespace grades
             Gradebook book = new Gradebook("kennedy's book");
             book.AddGrade(91);
             book.AddGrade(89.5f);
+            //Console.out is the output stream of console(output terminal)
+            //it's something we can write into an abstraction
+            //and that absraction behind the scenes puts everything we write
+            //onto the screen
+            //and its type is textwritter class 
+            book.WriteGrades(Console.Out);
+          
             //we are initializing a new class which stores
             //the values by performing computestatistics method
             GradeStatistics stats = book.ComputeStatistics();

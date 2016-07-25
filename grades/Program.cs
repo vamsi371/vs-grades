@@ -19,7 +19,24 @@ namespace grades
             //onto the screen
             //and its type is textwritter class 
             book.WriteGrades(Console.Out);
-          
+            
+            //Console.WriteLine("Please enter a name for the book");
+            //book.Name = Console.ReadLine();
+            //while (string.IsNullOrEmpty(book.Name))
+            //{
+                try
+                {
+                    Console.WriteLine("Please enter a valid name for the book");
+                    book.Name = Console.ReadLine();
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine("Invalid name");
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine(ex.StackTrace);
+                }
+            //}
+            
             //we are initializing a new class which stores
             //the values by performing computestatistics method
             GradeStatistics stats = book.ComputeStatistics();

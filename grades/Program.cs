@@ -12,6 +12,8 @@ namespace grades
          static void Main(string[] args)
         {
             Gradebook book = new Gradebook("kennedy's book");
+            FileStream stream = null;
+            StreamReader reader = null;
             try
             {
                 //string[] lines = File.ReadAllLines("grades.txt");
@@ -21,13 +23,13 @@ namespace grades
                 //at that time, for that we use Filestream class
                 //where we can have an option to close
 
-                FileStream stream = File.Open("grades.txt",FileMode.Open);
+                stream = File.Open("grades.txt",FileMode.Open);
                 
                 //Filestream reads the whole file into a byte array
                 //and so we cannot use readline method, so we use
                 //streamreader class which is a textreader that reads 
                 //characters from a byte stream
-                StreamReader reader = new StreamReader(stream);
+                reader = new StreamReader(stream);
                 string line = reader.ReadLine();
                 while (line!= null)
                 {
@@ -41,12 +43,28 @@ namespace grades
             }
             catch (FileNotFoundException ex)
             {
+                if (stream != null)
+                {
+                    stream.Close();
+                }
+                if (reader !=null)
+                reader.Close();
                 Console.WriteLine("could not locate text file");
+                //we are adding a return statement to stop this program
+                //after this exception
+                return;
             }
             //we can add multiple catch statements all at once
             catch (UnauthorizedAccessException ex)
             {
+                if (stream != null)
+                {
+                    stream.Close();
+                }
+                if (reader != null)
+                    reader.Close();
                 Console.WriteLine("No access to file");
+                return;
             }
             //Console.out is the output stream of console(output terminal)
             //it's something we can write into an abstraction

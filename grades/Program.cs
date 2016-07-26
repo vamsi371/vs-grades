@@ -12,8 +12,8 @@ namespace grades
          static void Main(string[] args)
         {
             Gradebook book = new Gradebook("kennedy's book");
-            FileStream stream = null;
-            StreamReader reader = null;
+            
+           
             try
             {
                 //string[] lines = File.ReadAllLines("grades.txt");
@@ -23,19 +23,27 @@ namespace grades
                 //at that time, for that we use Filestream class
                 //where we can have an option to close
 
-                stream = File.Open("grades.txt", FileMode.Open);
-
-                //Filestream reads the whole file into a byte array
-                //and so we cannot use readline method, so we use
-                //streamreader class which is a textreader that reads 
-                //characters from a byte stream
-                reader = new StreamReader(stream);
-                string line = reader.ReadLine();
-                while (line != null)
+                //<using> below make sure that by the time we exit
+                //using statement it calls dispose on filestream and
+                //streamreader, then closes it and all objects will not have this dispose
+                //method(anything which involve read and write opertn. have it)
+                //and we need to check it from their sourcecode(search for dispose 
+                //in sourcecode)
+                using (FileStream stream = File.Open("grades.txt", FileMode.Open))
+                using (StreamReader reader = new StreamReader(stream))
                 {
-                    float grade = float.Parse(line);
-                    book.AddGrade(grade);
-                    line = reader.ReadLine();
+                    //Filestream reads the whole file into a byte array
+                    //and so we cannot use readline method, so we use
+                    //streamreader class which is a textreader that reads 
+                    //characters from a byte stream
+
+                    string line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        float grade = float.Parse(line);
+                        book.AddGrade(grade);
+                        line = reader.ReadLine();
+                    }
                 }
             }
             catch (FileNotFoundException ex)
@@ -51,17 +59,7 @@ namespace grades
                 Console.WriteLine("No access to file");
                 return;
             }
-            //finally is used to do something after completing try
-            //and catch and works irrespectively of any exception in betwwen
-            finally
-            {
-                if (stream != null)
-                {
-                    stream.Close();
-                }
-                if (reader != null)
-                    reader.Close();
-            }
+        
             //Console.out is the output stream of console(output terminal)
             //it's something we can write into an abstraction
             //and that absraction behind the scenes puts everything we write

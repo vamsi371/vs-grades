@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,25 @@ namespace grades
          static void Main(string[] args)
         {
             Gradebook book = new Gradebook("kennedy's book");
-            book.AddGrade(91);
-            book.AddGrade(89.5f);
+            try
+            {
+                string[] lines = File.ReadAllLines("grades.txt");
+
+                foreach (string line in lines)
+                {
+                    float grade = float.Parse(line);
+                    book.AddGrade(grade);
+                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine("could not locate text file");
+            }
+            //we can add multiple catch statements all at once
+            catch (UnauthorizedAccessException ex)
+            {
+                Console.WriteLine("No access to file");
+            }
             //Console.out is the output stream of console(output terminal)
             //it's something we can write into an abstraction
             //and that absraction behind the scenes puts everything we write

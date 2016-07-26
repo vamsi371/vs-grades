@@ -20,7 +20,10 @@ namespace grades
                 {
                 if (String.IsNullOrEmpty(value))
                 {
-                   throw new ArgumentException("Name cannot be null or empty");
+                    //throw statement is a jumping statement after this throw 
+                    //statement the program jumps to some other code, 
+                    //here it will not execute the below if loop for setting name
+                    throw new ArgumentException("Name cannot be null or empty");
                 }
                 if (_name != value)
                     {

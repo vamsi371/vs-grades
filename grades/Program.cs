@@ -14,13 +14,30 @@ namespace grades
             Gradebook book = new Gradebook("kennedy's book");
             try
             {
-                string[] lines = File.ReadAllLines("grades.txt");
+                //string[] lines = File.ReadAllLines("grades.txt");
+                //the above line makes file open and we do not want
+                //this in C# because we may use the file again in
+                //some other place which means it should be closed
+                //at that time, for that we use Filestream class
+                //where we can have an option to close
 
-                foreach (string line in lines)
+                FileStream stream = File.Open("grades.txt",FileMode.Open);
+                
+                //Filestream reads the whole file into a byte array
+                //and so we cannot use readline method, so we use
+                //streamreader class which is a textreader that reads 
+                //characters from a byte stream
+                StreamReader reader = new StreamReader(stream);
+                string line = reader.ReadLine();
+                while (line!= null)
                 {
                     float grade = float.Parse(line);
                     book.AddGrade(grade);
+                    line = reader.ReadLine();
                 }
+
+                stream.Close();
+                reader.Close();
             }
             catch (FileNotFoundException ex)
             {

@@ -11,9 +11,10 @@ namespace grades
     {
          static void Main(string[] args)
         {
-            
-            Gradebook book = new ThrowawayGradebook("kennedy's book");
- 
+            //we are renaming it to abstract object gradetraker
+            //which abstracts methods of gradebook
+            GradeTracker book = CreateGradeBook();
+
             try
             {
                 //string[] lines = File.ReadAllLines("grades.txt");
@@ -26,7 +27,7 @@ namespace grades
                 //<using> below make sure that by the time we exit
                 //<using> statement it calls dispose on filestream and
                 //streamreader, then closes it
-                 
+
                 //all objects will not have this dispose
                 //method(anything which involve read and write opertn. have it)
                 //and we need to check it from their sourcecode(search for dispose 
@@ -61,7 +62,7 @@ namespace grades
                 Console.WriteLine("No access to file");
                 return;
             }
-        
+
             //Console.out is the output stream of console(output terminal)
             //it's something we can write into an abstraction
             //and that absraction behind the scenes puts everything we write
@@ -105,12 +106,12 @@ namespace grades
             //but this overwrites any other delegates initialized previously
             //i.e my past subscribers(methods) to the delegate
             //This must be prevented by changing the delegate type to an event
-            
+
             //as we know a single delegate can be used to invoke any no. of methods
             //and we want it to do that i.e have many no. of subscribers
             //by using above shown one will overwrite everything and limits to
             //only one subscriber(the finally initaialized one)
-            
+
             //we will use the syntax shown below to add any no. of methods
             //we want to add
             book.namechanged += onnamechanged3;
@@ -127,6 +128,12 @@ namespace grades
             Console.WriteLine(stats.LowGrade);
             Console.WriteLine(stats.AvgGrade);
             Console.WriteLine(stats.LetterGrade);
+        }
+
+        //some refactoring of code
+        private static GradeTracker CreateGradeBook()
+        {
+            return new ThrowawayGradebook("kennedy's book");
         }
 
         private static void onnamechanged4(object sender, NameChangedEventArgs aargs)

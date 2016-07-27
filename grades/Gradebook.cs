@@ -6,7 +6,10 @@ namespace grades
 {
     public class Gradebook
     {
-        private List<float> _gradees ;
+        //<protected> is used so that the derived class
+        //can access it from the base class <private>
+        //will not allow access
+        protected List<float> _gradees ;
         private string _name;
        
 
@@ -65,7 +68,8 @@ namespace grades
         public event NameChangedDelegate namechanged;
         public Gradebook(string name = "there is no name")
         {
-            _name= name;
+            Console.WriteLine("gradebook cnstrctd");
+            _name = name;
             _gradees = new List<float>();
 
         }

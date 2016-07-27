@@ -11,7 +11,11 @@ namespace grades
     {
          static void Main(string[] args)
         {
-            Gradebook book = new Gradebook("kennedy's book");
+            //check the comments above book.Computestatistics
+            //for changing
+            //Gradebook book = new ThrowawayGradebook("kennedy's book");
+            //to below code
+            ThrowawayGradebook book = new ThrowawayGradebook("kennedy's book");
             
            
             try
@@ -24,8 +28,10 @@ namespace grades
                 //where we can have an option to close
 
                 //<using> below make sure that by the time we exit
-                //using statement it calls dispose on filestream and
-                //streamreader, then closes it and all objects will not have this dispose
+                //<using> statement it calls dispose on filestream and
+                //streamreader, then closes it
+                 
+                //all objects will not have this dispose
                 //method(anything which involve read and write opertn. have it)
                 //and we need to check it from their sourcecode(search for dispose 
                 //in sourcecode)
@@ -66,18 +72,27 @@ namespace grades
             //onto the screen
             //and its type is textwritter class 
             book.WriteGrades(Console.Out);
-            
-            Console.WriteLine("Please enter a name for the book");
-            String p = Console.ReadLine();
+            Console.WriteLine("please enter a name for the book");
+            string p = Console.ReadLine();
             while (string.IsNullOrEmpty(p))
             {
-                    Console.WriteLine("Please enter a valid name for the book");
-                    p = Console.ReadLine();
+                Console.WriteLine("please enter a valid name for the book");
+                p = Console.ReadLine();
             }
             book.Name = p;
 
             //we are initializing a new class which stores
             //the values by performing computestatistics method
+
+            //In case of derived class the method that is invoken
+            //is from the class of the variable type
+            //for example, here there are two <computestatitics>
+            //methods one from base class(Gradebook) and the other
+            //from derived class (Throwaway Gradebook), so the 
+            //method that is invoken is invoken from the type <book>
+            //variable is defined 
+            //Gradebook book means from base class 
+            //ThrowawayGradebook book means from derived class
             GradeStatistics stats = book.ComputeStatistics();
             WriteBytes(stats.AvgGrade);
             writenames(book.Name);

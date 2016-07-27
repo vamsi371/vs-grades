@@ -11,13 +11,9 @@ namespace grades
     {
          static void Main(string[] args)
         {
-            //check the comments above book.Computestatistics
-            //for changing
-            //Gradebook book = new ThrowawayGradebook("kennedy's book");
-            //to below code
-            ThrowawayGradebook book = new ThrowawayGradebook("kennedy's book");
             
-           
+            Gradebook book = new ThrowawayGradebook("kennedy's book");
+ 
             try
             {
                 //string[] lines = File.ReadAllLines("grades.txt");
@@ -93,6 +89,10 @@ namespace grades
             //variable is defined 
             //Gradebook book means from base class 
             //ThrowawayGradebook book means from derived class
+
+            //by using virual and override in base and derived
+            //classes respectively we can make sure that the method is invoked
+            //from the object <book> variable is defined
             GradeStatistics stats = book.ComputeStatistics();
             WriteBytes(stats.AvgGrade);
             writenames(book.Name);

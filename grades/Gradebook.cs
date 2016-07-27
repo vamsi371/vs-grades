@@ -82,7 +82,16 @@ namespace grades
 
         //here the method computestatistics is used to return
         //gradestatistics
-        public GradeStatistics ComputeStatistics()
+
+        //<virtual> is used so that the method or property
+        //to be invoked by the variable is determined at runtime
+        //based on the type of object(here in <program.cs> ThrowawayGradebook)
+        //without <virtual> the method to be invoked is determined
+        //at compile time based on type of variable(here in <program.cs> Gradebook)
+
+        //along with this <virtual> in base class, <override> must be added in derived
+        //class for this run time polymorphism to work
+        public virtual GradeStatistics ComputeStatistics()
         {
             GradeStatistics stats = new GradeStatistics();
             

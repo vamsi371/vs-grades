@@ -28,7 +28,11 @@ namespace grades
                 
         }
 
-        public GradeStatistics ComputeStatistics()
+        //<override> should be added for run time polymorphism
+        //to work so that it overrides base class method when the 
+        //build is made
+        //for more info see base class <computestatistics> method
+        public override GradeStatistics ComputeStatistics()
         {
             //removing the lowest grade before performing
             //compute statistics from base class(Gradebook)

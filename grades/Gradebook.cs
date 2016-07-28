@@ -4,6 +4,7 @@ using System.IO;
 
 namespace grades
 {
+    //this is called a concrete class as this can be instantiated
     public class Gradebook : GradeTracker
     {
         //<protected> is used so that the derived class

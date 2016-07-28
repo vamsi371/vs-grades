@@ -15,6 +15,10 @@ namespace grades
     //such as what happens soon you send an e-mail, the protocol your 
     //email server uses are hidden from the user
 
+        //Abstract class cannot be instantiated because it is not
+        //fully implemented, only its derived class which is not 
+        //abstract can be instantiated
+
         //for every abstract method in base class
         //there should be a method defined in its derived classes
 

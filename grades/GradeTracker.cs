@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -32,9 +33,12 @@ namespace grades
         //where the method is written
         public abstract void AddGrade(float grade);
         public abstract GradeStatistics ComputeStatistics();
-        public abstract void WriteGrades(TextWriter textWritter);
+        //public abstract void WriteGrades(TextWriter textWritter);
+        public abstract IEnumerator GetEnumerator();
         public abstract void DoSomething();
 
+       
+        
         //these are cut pasted from gradebook
         protected string _name;
 

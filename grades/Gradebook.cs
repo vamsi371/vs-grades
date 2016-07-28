@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -13,14 +14,19 @@ namespace grades
         //can access it from the base class <private>
         //will not allow access
         protected List<float> _gradees ;
-        public override void WriteGrades(TextWriter textWritter)
+        //public override void WriteGrades(TextWriter textWritter)
+        //{
+        //    textWritter.WriteLine("Grades: ");
+        //    foreach (float g in _gradees)
+        //    {
+        //        textWritter.WriteLine(g);
+        //    }
+        //    textWritter.WriteLine("********");
+        //}
+        //the below ienumerator does the above work of writegrades
+        public override IEnumerator GetEnumerator()
         {
-            textWritter.WriteLine("Grades: ");
-            foreach (float g in _gradees)
-            {
-                textWritter.WriteLine(g);
-            }
-            textWritter.WriteLine("********");
+            return _gradees.GetEnumerator();
         }
         public Gradebook(string name = "there is no name")
         {
@@ -82,5 +88,6 @@ namespace grades
 
         }
 
+       
     }
 }

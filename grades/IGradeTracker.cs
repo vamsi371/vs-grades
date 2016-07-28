@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,11 +30,11 @@ namespace grades
 
         //we are constructing a new interface for gradetracker
          
-    interface IGradeTracker
+    interface IGradeTracker : IEnumerable
     {
         void AddGrade(float grade);
         GradeStatistics ComputeStatistics();
-        void WriteGrades(TextWriter textWritter);
+        //void WriteGrades(TextWriter textWritter);
         string Name { get; set; }
 
         event NameChangedDelegate namechanged;

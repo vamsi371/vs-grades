@@ -75,7 +75,14 @@ namespace grades
             //and that absraction behind the scenes puts everything we write
             //onto the screen
             //and its type is textwritter class 
-            book.WriteGrades(Console.Out);
+
+            //book.WriteGrades(Console.Out);
+
+            //the below code does the above work
+            foreach (float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
 
             book.DoSomething();
 

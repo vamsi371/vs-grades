@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace grades
 {
+   
     //Abstraction is a process of hiding the implementation details 
     //from the user, only the functionality will be provided to the user. 
     //In other words user will have the information on what the object 
@@ -24,7 +25,7 @@ namespace grades
 
     //creating a abstract class GradeTracker which will be a base class
     //to Gradebook and also abstracts methods of Gradebook
-    public abstract class GradeTracker
+    public abstract class GradeTracker : IGradeTracker 
     {
         //abstract methods are implicitly virtual and they 
         //should be followed by <override> in the derived class
@@ -32,9 +33,10 @@ namespace grades
         public abstract void AddGrade(float grade);
         public abstract GradeStatistics ComputeStatistics();
         public abstract void WriteGrades(TextWriter textWritter);
+        public abstract void DoSomething();
 
         //these are cut pasted from gradebook
-        private string _name;
+        protected string _name;
 
 
         public string Name

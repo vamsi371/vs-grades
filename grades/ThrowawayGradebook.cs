@@ -16,7 +16,7 @@ namespace grades
     //base class(here Gradebook) will be and should be cnstrctd 
     //if not it will show errors while building because
     //derived is inherited from from base 
-    class ThrowawayGradebook : Gradebook
+    class ThrowawayGradebook : Gradebook 
     {
         //<:> is helpful to pass the control
         //to some other constructor 
@@ -43,6 +43,14 @@ namespace grades
             }
             _gradees.Remove(lowest);
             return base.ComputeStatistics();
+        }
+
+       
+        //this overrides gradebook DOsomething when called through
+        //<this> class object
+        public override void DoSomething()
+        {
+            Console.WriteLine("doing nothing #IgradeTracker#");
         }
 
         

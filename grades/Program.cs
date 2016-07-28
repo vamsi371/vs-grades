@@ -13,8 +13,15 @@ namespace grades
         {
             //we are renaming it to abstract object gradetraker
             //which abstracts methods of gradebook
-            GradeTracker book = CreateGradeBook();
+            IGradeTracker book = CreateGradeBook();
 
+            IGradeTracker2 book2 = new ThrowawayGradebook("Shallin's book");
+            book2.DOnothing();
+            book2.Addmethod();
+
+            IGradeTracker2 book3 = new textclassforInterface();
+            book3.DOnothing();
+            book3.Addmethod();
             try
             {
                 //string[] lines = File.ReadAllLines("grades.txt");
@@ -69,6 +76,10 @@ namespace grades
             //onto the screen
             //and its type is textwritter class 
             book.WriteGrades(Console.Out);
+
+            book.DoSomething();
+
+            //take in a name for the book
             Console.WriteLine("please enter a name for the book");
             string p = Console.ReadLine();
             while (string.IsNullOrEmpty(p))
@@ -131,7 +142,7 @@ namespace grades
         }
 
         //some refactoring of code
-        private static GradeTracker CreateGradeBook()
+        private static IGradeTracker CreateGradeBook()
         {
             return new ThrowawayGradebook("kennedy's book");
         }
